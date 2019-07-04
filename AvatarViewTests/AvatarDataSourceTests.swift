@@ -10,6 +10,20 @@ import XCTest
 import Combine
 @testable import AvatarView
 
+class MockBeardService: BeardServiceType {
+  
+  init(injectedBeardMe: @escaping () -> AnyPublisher<UIImage, Never> ) {
+    self.injectedBeardMe = injectedBeardMe
+  }
+  
+  var injectedBeardMe: () -> AnyPublisher<UIImage, Never>
+  
+  func beardMe() -> AnyPublisher<UIImage, Never> {
+    return injectedBeardMe()
+  }
+
+}
+
 class AvatarDataSourceTests: XCTestCase {
   
   var sut: AvatarDataSource!
@@ -34,18 +48,17 @@ class AvatarDataSourceTests: XCTestCase {
   func testChangesAfterOnAppearIsCalled() {
 
     //Given
-    let expect = expectation(description: "Sets Image Name")
     sut = AvatarDataSource()
+    sut.beardService = MockBeardService(injectedBeardMe: { () -> AnyPublisher<UIImage, Never> in
+      return Just(UIImage(systemName: "circle")!)
+        .eraseToAnyPublisher()
+    })
+    
+    // When
     sut.onAppear()
-    
-    //When We wait and fufill after the time should have passed
-    sut.scheduler.schedule(after: DispatchQueue.SchedulerTimeType(.now() + 6)) {
-      expect.fulfill()
-    }
-    
+
     //Then
-    waitForExpectations(timeout: 7, handler: nil)
-    XCTAssertNotNil(sut.viewModel.imageString, "Sets Image Name")
+    XCTAssertNotNil(sut.viewModel.image, "Sets Image Name")
   }
   
   func testNoChangeNeeded() {
@@ -53,6 +66,12 @@ class AvatarDataSourceTests: XCTestCase {
     //Given
     let expect = expectation(description: "Doesn't Change Image Until needed")
     sut = AvatarDataSource()
+    sut.beardService = MockBeardService(injectedBeardMe: { () -> AnyPublisher<UIImage, Never> in
+      return Just(UIImage(systemName: "circle")!)
+        .delay(for: 50, scheduler:  self.sut.scheduler) //longer than the test
+        .eraseToAnyPublisher()
+    })
+    
     
     //When We wait and fufill after the time should have passed
     sut.scheduler.schedule(after: DispatchQueue.SchedulerTimeType(.now() + 6)) {
@@ -61,7 +80,7 @@ class AvatarDataSourceTests: XCTestCase {
     
     //Then
     waitForExpectations(timeout: 7, handler: nil)
-    XCTAssertNil(sut.viewModel.imageString, "Doesn't not sets image Name")
+    XCTAssertNil(sut.viewModel.image, "Doesn't not sets image Name")
   }
   
   

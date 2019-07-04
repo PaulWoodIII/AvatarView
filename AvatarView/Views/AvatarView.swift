@@ -16,7 +16,7 @@ struct AvatarView : View {
     
     VStack {
       Text( viewModelProvider.viewModel.username ?? "Unknown User")
-      Image(systemName: viewModelProvider.viewModel.imageString ?? "circle")
+      Image(uiImage: viewModelProvider.viewModel.image ?? Assets.Images.userPlaceHolder.uiImage)
     }
     .onAppear {
       self.viewModelProvider.onAppear()

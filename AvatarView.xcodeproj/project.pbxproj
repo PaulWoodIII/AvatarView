@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0F1A4E22CD78DA007BA5FC /* BeardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0F1A4D22CD78DA007BA5FC /* BeardService.swift */; };
+		3C0F1A5122CD79B5007BA5FC /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0F1A5022CD79B5007BA5FC /* Assets.swift */; };
+		3C0F1A5322CD79C2007BA5FC /* Assets+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0F1A5222CD79C2007BA5FC /* Assets+Images.swift */; };
 		3CC773FB22CD48B1009000F7 /* AvatarDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC773FA22CD48B1009000F7 /* AvatarDataSourceTests.swift */; };
+		3CCA3A1522CD837D007DE7FC /* BeardServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA3A1422CD837D007DE7FC /* BeardServiceTests.swift */; };
 		3CDB4A3222CCE36000C2784B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDB4A3122CCE36000C2784B /* AppDelegate.swift */; };
 		3CDB4A3422CCE36000C2784B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDB4A3322CCE36000C2784B /* SceneDelegate.swift */; };
 		3CDB4A3622CCE36000C2784B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDB4A3522CCE36000C2784B /* AvatarView.swift */; };
@@ -29,7 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C0F1A4D22CD78DA007BA5FC /* BeardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeardService.swift; sourceTree = "<group>"; };
+		3C0F1A5022CD79B5007BA5FC /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		3C0F1A5222CD79C2007BA5FC /* Assets+Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+Images.swift"; sourceTree = "<group>"; };
 		3CC773FA22CD48B1009000F7 /* AvatarDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarDataSourceTests.swift; sourceTree = "<group>"; };
+		3CCA3A1422CD837D007DE7FC /* BeardServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeardServiceTests.swift; sourceTree = "<group>"; };
 		3CDB4A2E22CCE36000C2784B /* AvatarView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AvatarView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDB4A3122CCE36000C2784B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CDB4A3322CCE36000C2784B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C0F1A4F22CD79A9007BA5FC /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3C0F1A5022CD79B5007BA5FC /* Assets.swift */,
+				3C0F1A5222CD79C2007BA5FC /* Assets+Images.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		3CDB4A2522CCE36000C2784B = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +102,7 @@
 			children = (
 				3CDB4A5522CCE3C700C2784B /* Views */,
 				3CDB4A5422CCE3BC00C2784B /* Services */,
+				3C0F1A4F22CD79A9007BA5FC /* Assets */,
 				3CDB4A5322CCE3AF00C2784B /* App Scene */,
 				3CDB4A3722CCE36100C2784B /* Assets.xcassets */,
 				3CDB4A3C22CCE36100C2784B /* LaunchScreen.storyboard */,
@@ -107,6 +125,7 @@
 			children = (
 				3CC773FA22CD48B1009000F7 /* AvatarDataSourceTests.swift */,
 				3CDB4A4A22CCE36100C2784B /* Info.plist */,
+				3CCA3A1422CD837D007DE7FC /* BeardServiceTests.swift */,
 			);
 			path = AvatarViewTests;
 			sourceTree = "<group>";
@@ -125,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				3CDB4A5822CCE41D00C2784B /* AvatarDataSource.swift */,
+				3C0F1A4D22CD78DA007BA5FC /* BeardService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -238,6 +258,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C0F1A4E22CD78DA007BA5FC /* BeardService.swift in Sources */,
+				3C0F1A5122CD79B5007BA5FC /* Assets.swift in Sources */,
+				3C0F1A5322CD79C2007BA5FC /* Assets+Images.swift in Sources */,
 				3CDB4A3222CCE36000C2784B /* AppDelegate.swift in Sources */,
 				3CDB4A5722CCE3EA00C2784B /* Environments.swift in Sources */,
 				3CDB4A3422CCE36000C2784B /* SceneDelegate.swift in Sources */,
@@ -250,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCA3A1522CD837D007DE7FC /* BeardServiceTests.swift in Sources */,
 				3CC773FB22CD48B1009000F7 /* AvatarDataSourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

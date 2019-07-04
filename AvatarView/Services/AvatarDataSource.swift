@@ -15,11 +15,18 @@ protocol AvatarDataSourceType {
   func onAppear()
 }
 
+/// You need to use a Reference Type for things that deal with data. This is because anything dealing with data needs to persist
+/// through the lifetime of all the closures nearly every data object is going to be dealing with. You'll be capturing self and structs
+/// simply cannot do that. Structs are great to define what data is, but not for to encapsulate mutating state
 class AvatarDataSource: AvatarDataSourceType, BindableObject {
   
   /// Expose the View Model as a struct to the View
   var viewModel: AvatarViewModel = AvatarViewModel(username: "Paul",
-                                                   imageString: nil)
+                                                   image: nil)
+  
+  /// A service that does some networking its Interface defines a function that returns a
+  /// Publisher, In Test use injection to change the default to some other mock object
+  var beardService: BeardServiceType = BeardService()
   
   /// Expose the Scheduler and its type for testing purposes
   var scheduler: DispatchQueue = DispatchQueue(label: "AvatarDataSource Queue")
@@ -42,14 +49,12 @@ class AvatarDataSource: AvatarDataSourceType, BindableObject {
   
   /// Handles the fact that the UI has appeared, nows time to do work
   func onAppear() {
-    //do work
     imageCancelable?.cancel()
-    imageCancelable = Just(1)
-      .delay(for: 5.0, scheduler: scheduler)
-      .sink { _ in
-        self.viewModel.imageString = "circle.fill"
+    imageCancelable = beardService.beardMe()
+      .sink { img in
+        self.viewModel.image = img
         self._didChange.send()
-    }
+      }
   }
 }
 
@@ -61,5 +66,5 @@ struct AvatarViewModel {
   /// Lets not actually deal with UIImage that isn't what I want to teach here, instead lets make the
   /// system image dynamic with Combine to simulate networking delay and focus on how to make
   /// something dynamic
-  var imageString: String?
+  var image: UIImage?
 }
